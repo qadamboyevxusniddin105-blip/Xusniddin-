@@ -1,0 +1,6 @@
+{
+  "name": "Starlit Love - Cinematic Romantic Experience",
+  "description": "A breathtaking, cinematic interactive romantic night sky experience with shooting stars, starlight particle effects, and poetic elegance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

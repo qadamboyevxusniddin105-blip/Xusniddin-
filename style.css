@@ -1,0 +1,561 @@
+/* ==========================================================================
+   Starlit Love: I LOVE YOU MALIKA
+   Cinematic Romantic Experience Stylesheet
+   ========================================================================== */
+
+:root {
+  --color-bg-deep: #020409;
+  --color-bg-midnight: #040916;
+  --color-starlight: #fffefb;
+  --color-gold-glow: rgba(245, 218, 160, 0.85);
+  --color-gold-deep: #d4af37;
+  --color-moon-silver: rgba(230, 241, 255, 0.9);
+  --color-rose-glow: rgba(255, 182, 193, 0.75);
+  --font-display: 'Cinzel Decorative', 'Cinzel', 'Playfair Display', serif;
+  --font-romantic: 'Cormorant Garamond', 'Playfair Display', serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Base resets & Canvas positioning */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg-deep);
+  color: var(--color-starlight);
+  font-family: var(--font-sans);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Master canvas for stars, shooting stars, moon, stardust & heart particles */
+#sky-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: block;
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+/* Cinematic atmospheric overlays */
+.atmosphere-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(2, 4, 10, 0.5) 75%, rgba(1, 2, 6, 0.88) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Subtle cinematic film grain */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Cinematic camera flash / shockwave when the shooting star streaks */
+#meteor-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  background: radial-gradient(circle at 60% 40%, rgba(255, 250, 240, 0.5) 0%, rgba(200, 230, 255, 0.18) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+/* Main cinematic content container: Perfectly centered romantic sanctuary */
+#cinematic-viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  pointer-events: none;
+  perspective: 1200px;
+}
+
+.scene-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease-out;
+}
+
+/* Glowing celestial aura blooming behind Malika's name */
+.celestial-center-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(850px, 95vw);
+  height: min(550px, 75vh);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(245, 218, 160, 0.18) 0%, rgba(180, 215, 255, 0.08) 45%, transparent 70%);
+  filter: blur(55px);
+  z-index: 1;
+  pointer-events: none;
+  animation: auraBreathe 9s ease-in-out infinite alternate;
+}
+
+@keyframes auraBreathe {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Grand Romantic Sanctuary: I LOVE YOU MALIKA (Main Centerpiece)
+   -------------------------------------------------------------------------- */
+.romantic-sanctuary {
+  position: relative;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+/* Celestial hairline ornaments */
+.celestial-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  width: min(340px, 70vw);
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  transform: scaleX(0.7);
+  transition: opacity 2s var(--ease-cinematic) 0.8s, transform 2s var(--ease-cinematic) 0.8s;
+}
+
+.celestial-ornament.revealed {
+  opacity: 0.85;
+  transform: scaleX(1);
+}
+
+.bottom-ornament {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  transition-delay: 1.6s;
+}
+
+.ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245, 218, 160, 0.6), transparent);
+}
+
+.ornament-star, .ornament-heart {
+  font-size: 1.15rem;
+  color: rgba(255, 235, 180, 0.95);
+  text-shadow: 0 0 15px rgba(245, 218, 160, 0.8);
+  animation: starPulse 3s ease-in-out infinite;
+}
+
+.ornament-heart {
+  color: rgba(255, 130, 160, 0.95);
+  text-shadow: 0 0 15px rgba(255, 105, 145, 0.8);
+}
+
+@keyframes starPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+}
+
+/* Main Headline Container */
+.romantic-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.9) translateY(25px);
+  filter: blur(14px);
+  transition: opacity 2.4s var(--ease-cinematic), transform 2.4s var(--ease-cinematic), filter 2.4s var(--ease-cinematic);
+  will-change: opacity, transform, filter;
+}
+
+.romantic-headline.revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0px);
+}
+
+/* Tier 1: "I LOVE YOU" */
+.headline-prefix {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4.2vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #fffefb;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.9),
+    0 0 35px rgba(245, 218, 160, 0.6),
+    0 0 70px rgba(212, 175, 55, 0.35);
+}
+
+/* Tier 2: "MALIKA" - The Grand Centerpiece */
+.headline-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 10vw, 8.5rem);
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+  display: block;
+  /* Gold-to-starlight gradient fill */
+  background: linear-gradient(180deg, #ffffff 0%, #fff4d6 35%, #f5d48b 70%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Multi-tier radiant bloom */
+  filter: drop-shadow(0 0 18px rgba(255, 235, 175, 0.9))
+          drop-shadow(0 0 45px rgba(245, 205, 120, 0.75))
+          drop-shadow(0 0 95px rgba(212, 175, 55, 0.5));
+  animation: malikaGleam 7s ease-in-out infinite;
+}
+
+@keyframes malikaGleam {
+  0%, 100% {
+    filter: drop-shadow(0 0 16px rgba(255, 235, 175, 0.85))
+            drop-shadow(0 0 40px rgba(245, 205, 120, 0.65))
+            drop-shadow(0 0 85px rgba(212, 175, 55, 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 26px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 65px rgba(255, 220, 140, 0.95))
+            drop-shadow(0 0 130px rgba(212, 175, 55, 0.7));
+  }
+}
+
+/* Subline: "More than words could ever explain." */
+.romantic-subline {
+  font-family: var(--font-romantic);
+  font-size: clamp(1.25rem, 3.2vw, 2.2rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: rgba(255, 246, 232, 0.95);
+  margin-top: 1.35rem;
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(8px);
+  transition: opacity 2s var(--ease-cinematic) 0.6s, transform 2s var(--ease-cinematic) 0.6s, filter 2s var(--ease-cinematic) 0.6s;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 218, 160, 0.4);
+}
+
+.romantic-subline.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* Romantic Devotion: "You are the most beautiful part of my story, my eternal star." */
+.romantic-devotion {
+  font-family: var(--font-romantic);
+  font-size: clamp(1.1rem, 2.4vw, 1.65rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  color: rgba(235, 225, 210, 0.88);
+  margin-top: 0.95rem;
+  max-width: 780px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(8px);
+  transition: opacity 2.2s var(--ease-cinematic) 1.2s, transform 2.2s var(--ease-cinematic) 1.2s, filter 2.2s var(--ease-cinematic) 1.2s;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 25px rgba(210, 230, 255, 0.3);
+}
+
+.romantic-devotion.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* --------------------------------------------------------------------------
+   Interactive HUD Controls
+   -------------------------------------------------------------------------- */
+
+/* Top bar: Music & Ambient State */
+.top-hud {
+  position: fixed;
+  top: 1.75rem;
+  right: 1.75rem;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-ambient-music {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(10, 16, 32, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 0.55rem 1.15rem;
+  color: rgba(245, 240, 230, 0.9);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s var(--ease-soft);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-ambient-music:hover {
+  background: rgba(20, 30, 60, 0.85);
+  border-color: rgba(245, 218, 160, 0.45);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(245, 218, 160, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-ambient-music:active {
+  transform: translateY(1px);
+}
+
+/* Sound wave animated bars */
+.audio-waves {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 14px;
+}
+
+.audio-bar {
+  width: 2.5px;
+  height: 4px;
+  background: rgba(245, 218, 160, 0.85);
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.btn-ambient-music.playing .audio-bar:nth-child(1) {
+  animation: audioBounce 1.2s ease-in-out infinite alternate;
+}
+.btn-ambient-music.playing .audio-bar:nth-child(2) {
+  animation: audioBounce 1.2s ease-in-out infinite alternate 0.3s;
+}
+.btn-ambient-music.playing .audio-bar:nth-child(3) {
+  animation: audioBounce 1.2s ease-in-out infinite alternate 0.15s;
+}
+.btn-ambient-music.playing .audio-bar:nth-child(4) {
+  animation: audioBounce 1.2s ease-in-out infinite alternate 0.45s;
+}
+
+@keyframes audioBounce {
+  0% {
+    height: 4px;
+  }
+  100% {
+    height: 14px;
+  }
+}
+
+/* Bottom Interactive Deck */
+.bottom-deck {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  opacity: 0;
+  transition: opacity 1.5s ease 1s;
+  pointer-events: auto;
+}
+
+.bottom-deck.revealed {
+  opacity: 1;
+}
+
+/* Interactive Action Buttons */
+.action-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(8, 14, 28, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 218, 160, 0.3);
+  border-radius: 9999px;
+  padding: 0.65rem 1.45rem;
+  color: rgba(255, 250, 240, 0.95);
+  font-family: var(--font-romantic);
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-soft);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+}
+
+.btn-action:hover {
+  background: rgba(22, 34, 68, 0.92);
+  border-color: rgba(255, 230, 180, 0.7);
+  color: #fff;
+  box-shadow: 0 0 30px rgba(245, 218, 160, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-action:active {
+  transform: translateY(1px);
+}
+
+.btn-action svg {
+  width: 17px;
+  height: 17px;
+  stroke: rgba(245, 218, 160, 0.95);
+  transition: transform 0.3s ease;
+}
+
+.btn-action:hover svg {
+  transform: scale(1.15);
+}
+
+/* Subtle interaction hint */
+.interaction-hint {
+  font-family: var(--font-romantic);
+  font-size: 0.95rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: rgba(235, 230, 215, 0.75);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  animation: pulseHint 4s ease-in-out infinite;
+}
+
+@keyframes pulseHint {
+  0%, 100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Constellation Notification Banner */
+#constellation-banner {
+  position: fixed;
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  z-index: 25;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(245, 230, 190, 0.95);
+  background: rgba(8, 14, 28, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 218, 160, 0.3);
+  padding: 0.5rem 1.4rem;
+  border-radius: 9999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s var(--ease-cinematic);
+  box-shadow: 0 0 25px rgba(245, 218, 160, 0.25);
+}
+
+#constellation-banner.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #cinematic-viewport {
+    padding: 1.25rem;
+  }
+
+  .headline-prefix {
+    letter-spacing: 0.22em;
+  }
+
+  .headline-name {
+    letter-spacing: 0.16em;
+  }
+
+  .bottom-deck {
+    bottom: 1.5rem;
+    width: 90%;
+  }
+
+  .action-buttons-group {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-action {
+    padding: 0.55rem 1.2rem;
+    font-size: 0.92rem;
+  }
+
+  .top-hud {
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
